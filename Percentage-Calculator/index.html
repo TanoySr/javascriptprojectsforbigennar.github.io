@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	 <center>
+<div class="d-flex justify-content-center ">
+	<div id="lcol" class="bg-info p-2">
+	 
+			<div id="doc">
+				<!-- #BeginEditable "doctext" -->
+				<h1 class="text-center text-light">Percentage Calculator</h1>
+				<form name="calcform0">
+				<table class="calc2" id="tbl0">
+					<tr>
+						<td><input type="number" step="any" name="p0" class="form-control" oninput="calcp0(1)" onblur="onblur0()" autofocus></td>
+						<td>%</td>
+						<td style="font-size:x-large;">&nbsp;&times;&nbsp;</td>
+						<td><input type="number" step="any" name="n0" class="form-control" oninput="calcp0(2)" onblur="onblur0()"></td>
+						<td style="font-size:x-large;">&nbsp;=&nbsp;</td>
+						<td><input type="number" step="any" name="h0" class="form-control" oninput="calcp0(3)" onblur="onblur0()"></td>
+						<td><button type="reset" title="Reset" class="btn btn-danger" >Reset</button></td>
+					</tr>
+				</table>
+				</form>
+
+				<form name="calcform1">
+				<table class="calc2" id="tbl1">
+					<tr>
+						<td>What is</td>
+						<td><input type="number" step="any" name="a" class="form-control"></td>
+						<td>% of</td>
+						<td><input type="number" step="any" name="b" class="form-control"></td>
+						<td>?</td>
+						<td><button type="button" title="Calculate" class="btn btn-success" onclick="calcp1()"> Calculate</button></td>
+						<td><input type="text" name="result1" class="form-control" readonly></td>
+						<td style="width:100%">&nbsp;</td>
+					</tr>
+					<tr id="pf1" style="display:none">
+						<td id="td1" colspan="8"><textarea rows="1" name="out1" class="form-control" readonly></textarea></td>
+					</tr>
+				</table>
+				</form>
+
+				<form name="calcform2">
+				<table class="calc2" id="tbl2">
+					<tr>
+						<td><input type="number" step="any" name="c" class="form-control"></td>
+						<td>is what percent of</td>
+						<td><input type="number" step="any" name="d" class="form-control"></td>
+						<td>?</td>
+						<td><button type="button" title="Calculate" class="btn btn-success" onclick="calcp2()"> Calculate</button></td>
+						<td><input type="text" name="result2" class="form-control" readonly></td>
+						<td>%</td>
+					</tr>
+					<tr id="pf3" style="display:none">
+						<td id="td2" colspan="7"><textarea rows="1" name="out2" class="form-control" readonly></textarea></td>
+					</tr>
+				</table>
+				
+				</form>
+
+				<form name="calcform3">
+				<table class="calc2" id="tbl3">
+					<tr>
+						<td><input type="number" step="any" name="x3" class="form-control"></td>
+						<td>is</td>
+						<td><input type="number" step="any" name="y3" class="form-control"></td>
+						<td>%</td>
+						<td>of what?</td>
+						<td><button type="button" title="Calculate" class="btn btn-success" onclick="calcp3()">Calculate</button></td>
+						<td><input type="text" name="result3" class="form-control" readonly></td>
+					</tr>
+					<tr id="pf5" style="display:none">
+						<td id="td3" colspan="7"><textarea rows="1" name="out3" class="form-control" readonly></textarea></td>
+					</tr>
+				</table>
+				</form>
+				
+				<form name="calcform4">
+				<table class="calc2" id="tbl4">
+					<tr>
+						<td colspan="8">What is the percentage change</td>
+					</tr>
+					<tr>
+						<td>from</td>
+						<td><input type="number" step="any" name="e" class="form-control"></td>
+						<td>to</td>
+						<td><input type="number" step="any" name="f" class="form-control"></td>
+						<td>?</td>
+						<td><button type="button" title="Calculate" class="btn btn-success" onclick="calcp4()"> Calculate</button></td>
+						<td><input type="text" name="result4" class="form-control" readonly></td>
+						<td>%</td>
+					</tr>
+					<tr id="pf7" style="display:none">
+						<td id="td4" colspan="8"><textarea rows="1" name="out4" class="form-control" readonly></textarea></td>
+					</tr>
+				</table>
+
+				</form>
+				
+				<form name="calcform5">
+				<table class="calc" id="tbl5a" style="width:100%; padding:0; margin-top:10px;">
+				<tr><td>
+				<table class="calc" id="tbl5">
+					<tr>
+						<td>Percent:</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>Fraction:</td>
+						<td>&nbsp;</td>
+						<td>Decimal:</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td rowspan="2"><input type="number" step="any" name="c1" tabindex="1" id="per" class="form-control"></td>
+						<td rowspan="2">%</td>
+						<td rowspan="2"><button type="button" title="Convert" onclick="convert()" tabindex="2" class="btn btn-default">&nbsp;=&nbsp;</button></td>
+						<td><input type="number" step="any" name="c2" tabindex="3" class="form-control"></td>
+						<td rowspan="2"><button type="button" title="Convert" onclick="convert()" tabindex="5" class="btn btn-success">&nbsp;=&nbsp;</button></td>
+						<td rowspan="2"><input type="number" step="any" name="c4" tabindex="6" id="dec" class="form-control"></td>
+						<td rowspan="2"><button type="reset" title="Reset" id="calcform5reset" class="btn btn-danger">Reset</button></td>
+					</tr>
+					<tr>
+						<td><input type="number" step="any" name="c3" tabindex="4" class="form-control"></td>
+					</tr>
+				</table>
+				</td>
+				</tr>
+				</table>
+				<!--<p>Example: 30% = 3/10 = 0.3</p>-->
+				</form>
+			</div>
+		
+	</div>
+</div>
+	</center>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
