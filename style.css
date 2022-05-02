@@ -8,7 +8,7 @@
   min-height: 100vh;
   background: #5372F0;
 }
-.container{
+.containers{
   max-width: 690px;
   width: 100%;
   padding: 30px;
@@ -16,11 +16,11 @@
   border-radius: 7px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.01);
 }
-.wrapper{
+.wrappers{
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-.wrapper .text-input{
+.wrappers .text-input{
   display: flex;
   border-bottom: 1px solid #ccc;
 }
@@ -42,7 +42,7 @@
 .text-input textarea::placeholder{
   color: #b7b6b6;
 }
-.controls, li, .icons, .icons i{
+.controls, li, .iconss, .iconss i{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,10 +51,10 @@
   list-style: none;
   padding: 12px 15px;
 }
-.controls .row .icons{
+.controls .row .iconss{
   width: 38%;
 }
-.controls .row .icons i{
+.controls .row .iconss i{
   width: 50px;
   color: #adadad;
   font-size: 14px;
@@ -62,11 +62,11 @@
   transition: transform 0.2s ease;
   justify-content: center;
 }
-.controls .row.from .icons{
+.controls .row.from .iconss{
   padding-right: 15px;
   border-right: 1px solid #ccc;
 }
-.controls .row.to .icons{
+.controls .row.to .iconss{
   padding-left: 15px;
   border-left: 1px solid #ccc;
 }
@@ -106,7 +106,7 @@
 .controls i:active{
   transform: scale(0.9);
 }
-.container button{
+.containers button{
   width: 100%;
   padding: 14px;
   outline: none;
@@ -120,10 +120,10 @@
 }
 
 @media (max-width: 660px){
-  .container{
+  .containers{
     padding: 20px;
   }
-  .wrapper .text-input{
+  .wrappers .text-input{
     flex-direction: column;
   }
   .text-input .to-text{
@@ -133,10 +133,10 @@
   .text-input textarea{
     height: 200px;
   }
-  .controls .row .icons{
+  .controls .row .iconss{
     display: none;
   }
-  .container button{
+  .containers button{
     padding: 13px;
     font-size: 16px;
   }
