@@ -5,7 +5,7 @@ var quote1   = allblockquote[i].innerText;
 var quote   = allblockquote[i].innerHTML;
 var socialiconBox =
 '<div class="blockquotes">'+
-    '<p class="copy-content text-justify" id="'+i+'">'+quote+'</p>'+
+    '<div class="copy-content text-justify" id="'+i+'">'+quote+'</div>'+
    '<div class="AT-share-wrapper">'+
     '<span class="ats " id="edit_letter'+i+'">Edit </span>'+
     '<span class="at-share-w"> <i class="sw"></i></span>'+
@@ -35,7 +35,7 @@ document.getElementById('letter_body').innerHTML = text1;
 document.getElementById('edit_social').innerHTML =
 // '<center class="text-danger">Share This Letter</center>'+
 '<div class="blockquotes">'+
-'<p class="copy-content text-justify" id="edited_letter"></p>'+
+'<div class="copy-content text-justify" id="edited_letter"></div>'+
 	'<div class="AT-share-wrapper">'+
 		'<span class="at-share-w"> <i class="sw"></i></span>'+
 		'<span class="at-share-f"> <i class="sf"></i></span>'+
