@@ -35,7 +35,7 @@ document.getElementById('letter_body').innerHTML = text1;
 document.getElementById('edit_social').innerHTML =
 // '<center class="text-danger">Share This Letter</center>'+
 '<div class="blockquotes">'+
-'<div class="copy-content text-justify" id="edited_letter"></div>'+
+'<div class="copy-content " id="edited_letter"></div>'+
 	'<div class="AT-share-wrapper">'+
 		'<span class="at-share-w"> <i class="sw"></i></span>'+
 		'<span class="at-share-f"> <i class="sf"></i></span>'+
@@ -132,9 +132,9 @@ function changeFont(font){
 
     jQuery(document).ready(function($) {
         $("a.word-export").click(function(event) {
-        document.getElementById("letter_body").style.textAlign = "";	
+        
             $("#letter_body").wordExport();
-	document.getElementById("letter_body").style.textAlign = "justify";	
+		
         });
     });
  function copyDivToClipboard() {
