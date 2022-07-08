@@ -132,8 +132,9 @@ function changeFont(font){
 
     jQuery(document).ready(function($) {
         $("a.word-export").click(function(event) {
-        	
+        document.getElementById("letter_body").style.textAlign = "";	
             $("#letter_body").wordExport();
+	document.getElementById("letter_body").style.textAlign = "justify";	
         });
     });
  function copyDivToClipboard() {
