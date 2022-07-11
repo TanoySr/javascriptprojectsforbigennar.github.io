@@ -7,11 +7,12 @@ var socialiconBox =
 '<div class="blockquotes">'+
     '<div class="copy-content text-justify" id="'+i+'">'+quote+'</div>'+
    '<div class="AT-share-wrapper">'+
-    '<span class="ats " id="edit_letter'+i+'">Edit </span>'+
-    '<span class="at-share-w"> <i class="sw"></i></span>'+
-    '<span class="at-share-f"> <i class="sf"></i></span>'+
-    '<span class="at-share-tg"> <i class="stg"></i></span>'+
-   '<span class="at-copy" id="copy_letter'+i+'"><i class="cp"></i> Copy</span>'+
+    '<span class="ats " id="edit_letter'+i+'"> <i class="fa fa-edit"></i></span>'+
+    '<span class="at-share-w"> <i class="fa fa-whatsapp"></i></span>'+
+    '<span class="at-share-f"> <i class="fa fa-facebook"></i></span>'+
+    '<span class="at-share-tg"> <i class="fa fa-telegram"></i></span>'+
+    '<span class="at-share-t"> <i class="fa fa-twitter"></i></span>'+
+   '<span class="at-copy" id="copy_letter'+i+'"><i class="fa fa-copy"></i> </span>'+
   '</div><div class="AT-share-wrapper cp2"></div>'+
 '</div>';
 
@@ -37,9 +38,10 @@ document.getElementById('edit_social').innerHTML =
 '<div class="blockquotes">'+
 '<div class="copy-content " id="edited_letter"></div>'+
 	'<div class="AT-share-wrapper">'+
-		'<span class="at-share-w"> <i class="sw"></i></span>'+
-		'<span class="at-share-f"> <i class="sf"></i></span>'+
-		'<span class="at-share-tg"> <i class="stg"></i></span>'+
+		'<span class="at-share-w"> <i class="fa fa-whatsapp"></i></span>'+
+    '<span class="at-share-f"> <i class="fa fa-facebook"></i></span>'+
+    '<span class="at-share-tg"> <i class="fa fa-telegram"></i></span>'+
+    '<span class="at-share-t"> <i class="fa fa-twitter"></i></span>'+
 		'</div><div class="AT-share-wrapper cp2"></div>'+
 	'</div>';
 myFunction();
