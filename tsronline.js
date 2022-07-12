@@ -17,8 +17,8 @@ var socialiconBox =
 '</div>';
 
 allblockquote[i].innerHTML= socialiconBox;
-
-
+ 
+console.log(quote);
 copyFun(quote1,quote,i);
 
 
@@ -31,7 +31,11 @@ navigator.clipboard.writeText(text)
 .then(() => { alert("Copied"); });
 })
 
+
+
+
 document.getElementById('edit_letter'+id+'').addEventListener("click",()=>{
+
 document.getElementById('letter_body').innerHTML = text1;
 document.getElementById('edit_social').innerHTML =
 // '<center class="text-danger">Share This Letter</center>'+
@@ -68,6 +72,7 @@ function myFunction() {
   
   hide_mobal.addEventListener("click", ()=>{
   	myModal.style.display = "none";
+    $(".popup_div").hide();
   });
   
   
@@ -109,7 +114,7 @@ function changeFont(font){
     var container = document.getElementById("letter_body");
     
     container.style.width = "500px";
-
+    container.style.textAlign = "";
     html2canvas(container, { allowTaint: true }).then(function (canvas) {
   
     var link = document.createElement("a");
@@ -119,26 +124,19 @@ function changeFont(font){
     link.target = '_blank';
     link.click();
     container.style.width = "";
+    container.style.textAlign = "justify";
     });
     }
 
-    // $('#clickbutt').click(function(){
-    //   $('#aaaa').hide();
-    //     const spinner=document.querySelector('#loading img');
-    //     spinner.style.display='block';
-    //     setTimeout(() => {
-    //         spinner.style.display='none';
-    //         $('#aaaa').show();
-    //     }, 5000);
-    //   });
 
-    jQuery(document).ready(function($) {
+
+    
         $("a.word-export").click(function(event) {
-        
-            $("#letter_body").wordExport();
-		
+          
+        	  $(".popup_div").toggle();
+            togglePopup();
+          
         });
-    });
  function copyDivToClipboard() {
  var copy_letter = document.getElementById("copy_letter");
  var range = document.createRange();
@@ -153,13 +151,56 @@ function changeFont(font){
 	$(".at-share-w").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://api.whatsapp.com/send?text=" + encodeURIComponent(t) + '%0A' + location.href + ""; window.open(n, "_blank") }), 
   $(".at-share-f").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://www.facebook.com/sharer/sharer.php?u=" + location.href + "&quote=" + encodeURIComponent(t); window.open(n, "_blank") }), 
 
-  $(".at-share-tg").click(function (){ window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://telegram.me/share/url?url=" + encodeURIComponent(t) + '%0A' + ""; window.open(n, "_blank") })
+  $(".at-share-tg").click(function (){ 
+    window.location.origin; 
+    var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://telegram.me/share/url?url=" + encodeURIComponent(t) + '%0A' + ""; 
 
-$(".at-share-t").click(function (){ 
+    window.open(n, "_blank") 
+  })
+  $(".at-share-t").click(function (){ 
     window.location.origin; 
     var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(t) + '%0A' + ""; 
 
     window.open(n, "_blank") 
-  })	
+  })
+
+	
+ // Function to show and hide the popup
+function togglePopup() {
+$(".popup_div").show();
+startschedule();
+}
+document.getElementById("popup_close").addEventListener("click",()=>{
+$(".popup_div").hide();
+})
+        
+
+
+var timeout, interval
+var threshold = 5000;
+var secondsleft = threshold;
+
+
+
+function startschedule() {
+    clearInterval(interval);
+    secondsleft = threshold;
+    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
+    interval = setInterval(function() {
+        startChecking();
+    }, 1000)
+}
+
+function startChecking() {
+    secondsleft -= 1000;
+    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
+    if (secondsleft == 0) {
+        //document.getElementById("clickme").style.display="";
+        clearInterval(interval);
+        document.querySelector("#countdown").innerHTML = "Processing For Dwonload";
+        $("#letter_body").wordExport();
+        document.querySelector("#popup_close").style.display = "";
+    }
+}
 
 	
