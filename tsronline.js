@@ -155,6 +155,11 @@ function changeFont(font){
 
   $(".at-share-tg").click(function (){ window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://telegram.me/share/url?url=" + encodeURIComponent(t) + '%0A' + ""; window.open(n, "_blank") })
 
-	
+$(".at-share-t").click(function (){ 
+    window.location.origin; 
+    var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(t) + '%0A' + ""; 
+
+    window.open(n, "_blank") 
+  })	
 
 	
