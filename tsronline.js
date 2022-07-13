@@ -1,4 +1,3 @@
-
 var allblockquote = document.querySelectorAll("blockquote");
 for(let i=0; i<=allblockquote.length-1; i++ ){
 var quote1   = allblockquote[i].innerText;
@@ -20,7 +19,7 @@ allblockquote[i].innerHTML= socialiconBox;
  
 console.log(quote);
 copyFun(quote1,quote,i);
-
+social_shear();
 
 }
 
@@ -48,7 +47,9 @@ document.getElementById('edit_social').innerHTML =
     '<span class="at-share-t"> <i class="fab fa-twitter"></i></span>'+
 		'</div><div class="AT-share-wrapper cp2"></div>'+
 	'</div>';
+
 myFunction();
+
 
 })
 
@@ -56,6 +57,7 @@ myFunction();
 
 
 function myFunction() {
+  social_shear();
 	var myModal = document.getElementById("myModal");
 	var hide_mobal = document.getElementById("hide_mobal");
   var edit_letter_button = document.getElementById("edit_letter");
@@ -73,6 +75,7 @@ function myFunction() {
   hide_mobal.addEventListener("click", ()=>{
   	myModal.style.display = "none";
     $(".popup_div").hide();
+    document.querySelector("#popup_close").style.display = "none";
   });
   
   
@@ -148,7 +151,8 @@ function changeFont(font){
  window.getSelection().removeAllRanges();// to deselect
 }
 
-	$(".at-share-w").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://api.whatsapp.com/send?text=" + encodeURIComponent(t) + '%0A' + location.href + ""; window.open(n, "_blank") }), 
+function social_shear() {
+  $(".at-share-w").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://api.whatsapp.com/send?text=" + encodeURIComponent(t) + '%0A' + location.href + ""; window.open(n, "_blank") }), 
   $(".at-share-f").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://www.facebook.com/sharer/sharer.php?u=" + location.href + "&quote=" + encodeURIComponent(t); window.open(n, "_blank") }), 
 
   $(".at-share-tg").click(function (){ 
@@ -156,13 +160,16 @@ function changeFont(font){
     var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://telegram.me/share/url?url=" + encodeURIComponent(t) + '%0A' + ""; 
 
     window.open(n, "_blank") 
-  })
+  }),
   $(".at-share-t").click(function (){ 
     window.location.origin; 
+    
     var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(t) + '%0A' + ""; 
 
     window.open(n, "_blank") 
   })
+}
+  
 
 	
  // Function to show and hide the popup
@@ -172,6 +179,7 @@ startschedule();
 }
 document.getElementById("popup_close").addEventListener("click",()=>{
 $(".popup_div").hide();
+document.querySelector("#popup_close").style.display = "none";
 })
         
 
@@ -202,5 +210,3 @@ function startChecking() {
         document.querySelector("#popup_close").style.display = "";
     }
 }
-
-	
