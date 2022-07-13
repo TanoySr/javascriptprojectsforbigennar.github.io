@@ -17,7 +17,7 @@ var socialiconBox =
 
 allblockquote[i].innerHTML= socialiconBox;
  
-console.log(quote);
+
 copyFun(quote1,quote,i);
 social_shear();
 
@@ -100,7 +100,7 @@ function myFunction() {
 if (letter_body.contentEditable == "true") {
 letter_body.setAttribute("contenteditable", "none");
 //letter_body.style.border = "none";
-console.log(this);
+
 letter_body.style.border="2px solid #11d6f5";
 ok_letter_button.style.display = "none";
   edit_letter_button.style.display = "block";
@@ -111,45 +111,119 @@ ok_letter_button.style.display = "none";
 function changeFont(font){
         document.getElementById("letter_body").style.fontFamily = font.value;
     } 
+var checking
+   document.getElementById("downloadimage").addEventListener("click",()=>{
+      checking = "downloadimage";
+     togglePopup(checking);
+   });
+   document.getElementById("word-export").addEventListener("click",()=>{
+      checking = "word-export";
+     togglePopup(checking);
+   });
+   document.getElementById("copy_letter").addEventListener("click",()=>{
+      checking = "copy_letter";
+     togglePopup(checking);
+   });
+   //document.getElementById("copy_letter").addEventListener("click",togglePopup);
+   //document.getElementById("word-export").addEventListener("click",togglePopup);
 
-
-    function downloadimage() {
-    var container = document.getElementById("letter_body");
     
-    container.style.width = "500px";
-    container.style.textAlign = "";
-    html2canvas(container, { allowTaint: true }).then(function (canvas) {
+
+function togglePopup(data) {
   
-    var link = document.createElement("a");
-    document.body.appendChild(link);
-    link.download = "letter_TSR.jpg";
-    link.href = canvas.toDataURL();
-    link.target = '_blank';
-    link.click();
-    container.style.width = "";
-    container.style.textAlign = "justify";
-    });
-    }
+  if (data == "downloadimage") {
+    $(".popup_div").show();
+    startschedule(data);
+  }else if (data == "word-export") {
+    $(".popup_div").show();
+    startschedule(data);
+  }else if (data == "copy_letter") {
+    $(".popup_div").show();
+    startschedule(data);
+  }else{
+    alert("Something went wrong !");
+  }
 
-
-
-    
-        $("a.word-export").click(function(event) {
-          
-        	  $(".popup_div").toggle();
-            togglePopup();
-          
-        });
- function copyDivToClipboard() {
- var copy_letter = document.getElementById("copy_letter");
- var range = document.createRange();
- range.selectNode(document.getElementById("letter_body"));
- window.getSelection().removeAllRanges(); // clear current selection
- window.getSelection().addRange(range); // to select text
- document.execCommand("copy");
- copy_letter.style.backgroundColor = "green";
- window.getSelection().removeAllRanges();// to deselect
 }
+
+document.getElementById("popup_close").addEventListener("click",()=>{
+$(".popup_div").hide();
+document.querySelector("#popup_close").style.display = "none";
+})       
+
+var timeout, interval
+var threshold = 5000;
+var secondsleft = threshold;
+var tanoy = "tanoy";
+
+
+function startschedule(data) {
+    clearInterval(interval);
+    secondsleft = threshold;
+    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
+    interval = setInterval(function() {
+        startChecking(data);
+    }, 1000)
+}
+
+function startChecking(data) {
+    secondsleft -= 1000;
+    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
+    if (secondsleft == 0) {
+        clearInterval(interval);
+        
+         if (data == "downloadimage") {
+          downloadimage(document.querySelector("#countdown").innerHTML = "Processing For Dwonload");
+          document.querySelector("#popup_close").style.display = "";
+          data = "";
+         }else if(data == "word-export"){
+          word_export(document.querySelector("#countdown").innerHTML = "Word File Dwonloaded ! ");
+          document.querySelector("#popup_close").style.display = "";
+          data = "";
+         }else if(data == "copy_letter"){
+          copyDivToClipboard(document.querySelector("#countdown").innerHTML = "Copied Letter ! ");
+          document.querySelector("#popup_close").style.display = "";
+          data = "";
+         }else{
+          document.querySelector("#countdown").innerHTML = "Something went wrong ! "
+         }
+        
+    }
+}
+
+
+function word_export(){
+$("#letter_body").wordExport();
+document.querySelector("#countdown").innerHTML = " Word file Dwonloaded !";
+}
+
+function downloadimage() {
+var container = document.getElementById("letter_body");
+var link = document.createElement("a");
+container.style.width = "500px";
+container.style.textAlign = "";
+html2canvas(container, { allowTaint: true }).then(function (canvas) {
+document.body.appendChild(link);
+link.download = "letter_TSR.jpg";
+link.href = canvas.toDataURL();
+link.target = '_blank';
+link.click();
+container.style.width = "";
+container.style.textAlign = "justify";
+});
+}
+
+function copyDivToClipboard() {
+var copy_letter = document.getElementById("copy_letter");
+var range = document.createRange();
+range.selectNode(document.getElementById("letter_body"));
+window.getSelection().removeAllRanges(); // clear current selection
+window.getSelection().addRange(range); // to select text
+document.execCommand("copy");
+copy_letter.style.backgroundColor = "green";
+window.getSelection().removeAllRanges();// to deselect
+}
+
 
 function social_shear() {
   $(".at-share-w").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://api.whatsapp.com/send?text=" + encodeURIComponent(t) + '%0A' + location.href + ""; window.open(n, "_blank") }), 
@@ -168,45 +242,4 @@ function social_shear() {
 
     window.open(n, "_blank") 
   })
-}
-  
-
-	
- // Function to show and hide the popup
-function togglePopup() {
-$(".popup_div").show();
-startschedule();
-}
-document.getElementById("popup_close").addEventListener("click",()=>{
-$(".popup_div").hide();
-document.querySelector("#popup_close").style.display = "none";
-})
-        
-
-
-var timeout, interval
-var threshold = 5000;
-var secondsleft = threshold;
-
-
-
-function startschedule() {
-    clearInterval(interval);
-    secondsleft = threshold;
-    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
-    interval = setInterval(function() {
-        startChecking();
-    }, 1000)
-}
-
-function startChecking() {
-    secondsleft -= 1000;
-    document.querySelector("#countdown").innerHTML = "Please wait in " + Math.abs((secondsleft / 1000)) + " secs";
-    if (secondsleft == 0) {
-        //document.getElementById("clickme").style.display="";
-        clearInterval(interval);
-        document.querySelector("#countdown").innerHTML = "Processing For Dwonload";
-        $("#letter_body").wordExport();
-        document.querySelector("#popup_close").style.display = "";
-    }
 }
