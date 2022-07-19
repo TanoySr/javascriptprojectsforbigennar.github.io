@@ -24,7 +24,6 @@ social_shear();
 }
 
 function copyFun(text,text1,id){
-//console.log(text,id);
 document.getElementById('copy_letter'+id+'').addEventListener("click",()=>{
 navigator.clipboard.writeText(text)
 .then(() => { alert("Copied"); });
@@ -112,32 +111,33 @@ function changeFont(font){
         document.getElementById("letter_body").style.fontFamily = font.value;
     } 
 var checking
-   document.getElementById("downloadimage").addEventListener("click",()=>{
-      checking = "downloadimage";
-     togglePopup(checking);
-   });
-   document.getElementById("word-export").addEventListener("click",()=>{
-      checking = "word-export";
-     togglePopup(checking);
-   });
+   // document.getElementById("downloadimage").addEventListener("click",()=>{
+   //    checking = "downloadimage";
+   //   togglePopup(checking);
+   // });
+   // document.getElementById("word-export").addEventListener("click",()=>{
+   //    checking = "word-export";
+   //   togglePopup(checking);
+   // });
    document.getElementById("copy_letter").addEventListener("click",()=>{
       checking = "copy_letter";
      togglePopup(checking);
    });
-   //document.getElementById("copy_letter").addEventListener("click",togglePopup);
-   //document.getElementById("word-export").addEventListener("click",togglePopup);
+  
 
     
 
 function togglePopup(data) {
   
-  if (data == "downloadimage") {
-    $(".popup_div").show();
-    startschedule(data);
-  }else if (data == "word-export") {
-    $(".popup_div").show();
-    startschedule(data);
-  }else if (data == "copy_letter") {
+  // if (data == "downloadimage") {
+  //   $(".popup_div").show();
+  //   startschedule(data);
+  // }else if (data == "word-export") {
+  //   $(".popup_div").show();
+  //   startschedule(data);
+  // }else 
+
+  if (data == "copy_letter") {
     $(".popup_div").show();
     startschedule(data);
   }else{
@@ -152,7 +152,7 @@ document.querySelector("#popup_close").style.display = "none";
 })       
 
 var timeout, interval
-var threshold = 5000;
+var threshold = 10000;
 var secondsleft = threshold;
 var tanoy = "tanoy";
 
@@ -172,15 +172,16 @@ function startChecking(data) {
     if (secondsleft == 0) {
         clearInterval(interval);
         
-         if (data == "downloadimage") {
-          downloadimage(document.querySelector("#countdown").innerHTML = "Processing For Dwonload");
-          document.querySelector("#popup_close").style.display = "";
-          data = "";
-         }else if(data == "word-export"){
-          word_export(document.querySelector("#countdown").innerHTML = "Word File Dwonloaded ! ");
-          document.querySelector("#popup_close").style.display = "";
-          data = "";
-         }else if(data == "copy_letter"){
+         // if (data == "downloadimage") {
+         //  downloadimage(document.querySelector("#countdown").innerHTML = "Processing For Dwonload");
+         //  document.querySelector("#popup_close").style.display = "";
+         //  data = "";
+         // }else if(data == "word-export"){
+         //  word_export(document.querySelector("#countdown").innerHTML = "Word File Dwonloaded ! ");
+         //  document.querySelector("#popup_close").style.display = "";
+         //  data = "";
+         // }else 
+         if(data == "copy_letter"){
           copyDivToClipboard(document.querySelector("#countdown").innerHTML = "Copied Letter ! ");
           document.querySelector("#popup_close").style.display = "";
           data = "";
@@ -192,26 +193,26 @@ function startChecking(data) {
 }
 
 
-function word_export(){
-$("#letter_body").wordExport();
-document.querySelector("#countdown").innerHTML = " Word file Dwonloaded !";
-}
+// function word_export(){
+// $("#letter_body").wordExport();
+// document.querySelector("#countdown").innerHTML = " Word file Dwonloaded !";
+// }
 
-function downloadimage() {
-var container = document.getElementById("letter_body");
-var link = document.createElement("a");
-container.style.width = "500px";
-container.style.textAlign = "";
-html2canvas(container, { allowTaint: true }).then(function (canvas) {
-document.body.appendChild(link);
-link.download = "letter_TSR.jpg";
-link.href = canvas.toDataURL();
-link.target = '_blank';
-link.click();
-container.style.width = "";
-container.style.textAlign = "justify";
-});
-}
+// function downloadimage() {
+// var container = document.getElementById("letter_body");
+// var link = document.createElement("a");
+// container.style.width = "500px";
+// container.style.textAlign = "";
+// html2canvas(container, { allowTaint: true }).then(function (canvas) {
+// document.body.appendChild(link);
+// link.download = "letter_TSR.jpg";
+// link.href = canvas.toDataURL();
+// link.target = '_blank';
+// link.click();
+// container.style.width = "";
+// container.style.textAlign = "justify";
+// });
+// }
 
 function copyDivToClipboard() {
 var copy_letter = document.getElementById("copy_letter");
@@ -226,6 +227,7 @@ window.getSelection().removeAllRanges();// to deselect
 
 
 function social_shear() {
+  
   $(".at-share-w").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://api.whatsapp.com/send?text=" + encodeURIComponent(t) + '%0A' + location.href + ""; window.open(n, "_blank") }), 
   $(".at-share-f").click(function () { window.location.origin; var t = $(this).parent(".AT-share-wrapper").parent(".blockquotes").find(" > .copy-content").text(), n = "https://www.facebook.com/sharer/sharer.php?u=" + location.href + "&quote=" + encodeURIComponent(t); window.open(n, "_blank") }), 
 
