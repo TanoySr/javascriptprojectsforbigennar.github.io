@@ -1,3 +1,6 @@
+<script>
+
+         
 var allblockquote = document.querySelectorAll("blockquote");
 for(let i=0; i<=allblockquote.length-1; i++ ){
 var quote1   = allblockquote[i].innerText;
@@ -39,13 +42,13 @@ document.getElementById('edit_social').innerHTML =
 // '<center class="text-danger">Share This Letter</center>'+
 '<div class="blockquotes">'+
 '<div class="copy-content " id="edited_letter"></div>'+
-	'<div class="AT-share-wrapper">'+
-		'<span class="at-share-w"> <i class="fab fa-whatsapp"></i></span>'+
+  '<div class="AT-share-wrapper">'+
+    '<span class="at-share-w"> <i class="fab fa-whatsapp"></i></span>'+
     '<span class="at-share-f"> <i class="fab fa-facebook"></i></span>'+
     '<span class="at-share-tg"> <i class="fab fa-telegram"></i></span>'+
     '<span class="at-share-t"> <i class="fab fa-twitter"></i></span>'+
-		'</div><div class="AT-share-wrapper cp2"></div>'+
-	'</div>';
+    '</div><div class="AT-share-wrapper cp2"></div>'+
+  '</div>';
 
 myFunction();
 
@@ -57,8 +60,8 @@ myFunction();
 
 function myFunction() {
   social_shear();
-	var myModal = document.getElementById("myModal");
-	var hide_mobal = document.getElementById("hide_mobal");
+  var myModal = document.getElementById("myModal");
+  var hide_mobal = document.getElementById("hide_mobal");
   var edit_letter_button = document.getElementById("edit_letter");
   var ok_letter_button = document.getElementById("ok_letter");
   var letter_body = document.getElementById("letter_body");
@@ -72,7 +75,7 @@ function myFunction() {
 
   
   hide_mobal.addEventListener("click", ()=>{
-  	myModal.style.display = "none";
+    myModal.style.display = "none";
     $(".popup_div").hide();
     document.querySelector("#popup_close").style.display = "none";
   });
@@ -80,16 +83,16 @@ function myFunction() {
   
   edit_letter_button.addEventListener("click", ()=>{
                
-			    letter_body.setAttribute("contenteditable", "true");
-			  	letter_body.style.border = "2px solid red";
+          letter_body.setAttribute("contenteditable", "true");
+          letter_body.style.border = "2px solid red";
                 edit_letter_button.style.display = "none";
                 ok_letter_button.style.display = "block";
        
   });
   ok_letter_button.addEventListener("click", ()=>{
                
-			    letter_body.setAttribute("contenteditable", "none");
-			  	letter_body.style.border = "2px solid #36D6F5";
+          letter_body.setAttribute("contenteditable", "none");
+          letter_body.style.border = "2px solid #36D6F5";
                 edit_letter_button.style.display = "block";
                 ok_letter_button.style.display = "none";
                 var edited_letter = letter_body.innerHTML;
@@ -111,14 +114,14 @@ function changeFont(font){
         document.getElementById("letter_body").style.fontFamily = font.value;
     } 
 var checking
-   // document.getElementById("downloadimage").addEventListener("click",()=>{
-   //    checking = "downloadimage";
-   //   togglePopup(checking);
-   // });
-   // document.getElementById("word-export").addEventListener("click",()=>{
-   //    checking = "word-export";
-   //   togglePopup(checking);
-   // });
+   document.getElementById("downloadimage").addEventListener("click",()=>{
+      checking = "downloadimage";
+     togglePopup(checking);
+   });
+   document.getElementById("word-export").addEventListener("click",()=>{
+      checking = "word-export";
+     togglePopup(checking);
+   });
    document.getElementById("copy_letter").addEventListener("click",()=>{
       checking = "copy_letter";
      togglePopup(checking);
@@ -129,13 +132,13 @@ var checking
 
 function togglePopup(data) {
   
-  // if (data == "downloadimage") {
-  //   $(".popup_div").show();
-  //   startschedule(data);
-  // }else if (data == "word-export") {
-  //   $(".popup_div").show();
-  //   startschedule(data);
-  // }else 
+  if (data == "downloadimage") {
+    $(".popup_div").show();
+    startschedule(data);
+  }else if (data == "word-export") {
+    $(".popup_div").show();
+    startschedule(data);
+  }else 
 
   if (data == "copy_letter") {
     $(".popup_div").show();
@@ -152,7 +155,7 @@ document.querySelector("#popup_close").style.display = "none";
 })       
 
 var timeout, interval
-var threshold = 10000;
+var threshold = 5000;
 var secondsleft = threshold;
 var tanoy = "tanoy";
 
@@ -172,15 +175,15 @@ function startChecking(data) {
     if (secondsleft == 0) {
         clearInterval(interval);
         
-         // if (data == "downloadimage") {
-         //  downloadimage(document.querySelector("#countdown").innerHTML = "Processing For Dwonload");
-         //  document.querySelector("#popup_close").style.display = "";
-         //  data = "";
-         // }else if(data == "word-export"){
-         //  word_export(document.querySelector("#countdown").innerHTML = "Word File Dwonloaded ! ");
-         //  document.querySelector("#popup_close").style.display = "";
-         //  data = "";
-         // }else 
+         if (data == "downloadimage") {
+          downloadimage(document.querySelector("#countdown").innerHTML = "Processing For Dwonload");
+          document.querySelector("#popup_close").style.display = "";
+          data = "";
+         }else if(data == "word-export"){
+          word_export(document.querySelector("#countdown").innerHTML = "Word File Dwonloaded ! ");
+          document.querySelector("#popup_close").style.display = "";
+          data = "";
+         }else 
          if(data == "copy_letter"){
           copyDivToClipboard(document.querySelector("#countdown").innerHTML = "Copied Letter ! ");
           document.querySelector("#popup_close").style.display = "";
@@ -193,26 +196,26 @@ function startChecking(data) {
 }
 
 
-// function word_export(){
-// $("#letter_body").wordExport();
-// document.querySelector("#countdown").innerHTML = " Word file Dwonloaded !";
-// }
+function word_export(){
+$("#letter_body").wordExport();
+document.querySelector("#countdown").innerHTML = " Word file Dwonloaded !";
+}
 
-// function downloadimage() {
-// var container = document.getElementById("letter_body");
-// var link = document.createElement("a");
-// container.style.width = "500px";
-// container.style.textAlign = "";
-// html2canvas(container, { allowTaint: true }).then(function (canvas) {
-// document.body.appendChild(link);
-// link.download = "letter_TSR.jpg";
-// link.href = canvas.toDataURL();
-// link.target = '_blank';
-// link.click();
-// container.style.width = "";
-// container.style.textAlign = "justify";
-// });
-// }
+function downloadimage() {
+var container = document.getElementById("letter_body");
+var link = document.createElement("a");
+container.style.width = "500px";
+container.style.textAlign = "";
+html2canvas(container, { allowTaint: true }).then(function (canvas) {
+document.body.appendChild(link);
+link.download = "letter_TSR.jpg";
+link.href = canvas.toDataURL();
+link.target = '_blank';
+link.click();
+container.style.width = "";
+container.style.textAlign = "justify";
+});
+}
 
 function copyDivToClipboard() {
 var copy_letter = document.getElementById("copy_letter");
@@ -245,3 +248,6 @@ function social_shear() {
     window.open(n, "_blank") 
   })
 }
+
+
+</script>
