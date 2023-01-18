@@ -1,4 +1,4 @@
-<script>
+
 
          
 var allblockquote = document.querySelectorAll("blockquote");
@@ -250,4 +250,4 @@ function social_shear() {
 }
 
 
-</script>
+
