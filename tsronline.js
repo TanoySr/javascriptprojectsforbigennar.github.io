@@ -342,30 +342,7 @@ document.getElementById("download_PDF").addEventListener("click",(e)=>{
                           jsPDF:        { unit: 'in', format: page_size, orientation: layout }
                         };
                         
-                      //html2pdf().set(opt).from(a4Div).save();
-
-                        var count = 10; // Set the countdown time in seconds
-                        var downloadButton = document.getElementById("download_PDF");
-                        
-                        // Disable the download button and start the countdown
-                        downloadButton.disabled = true;
-                        downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                        
-                        var countdownInterval = setInterval(function() {
-                          count--;
-                          downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                          
-                          if (count === 0) {
-                            clearInterval(countdownInterval);
-                            downloadButton.innerHTML = "Downloading....";
-                            downloadButton.disabled = false;
-                          }
-                        }, 1000); // Run the countdown every second
-                        
-                        // Simulate the download by redirecting to a file URL after 10 seconds
-                        setTimeout(function() {
-                          html2pdf().set(opt).from(a4Div).save();
-                        }, 10000); // Wait for 10 seconds before redirecting to the file URL
+                      html2pdf().set(opt).from(a4Div).save();           
        })
 
 
