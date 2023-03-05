@@ -205,89 +205,21 @@ function changeFont_size(font_size){
     
 } 
 
-document.getElementById("download_PDF").addEventListener("click",()=>{
-      var m = document.getElementById("margin").value;
-      var quality = document.getElementById("quality").value;
-      var page_size = document.getElementById("page_size").value;
-      var layout = document.getElementById("layout").value;
-                 console.log(m);              
-                    const a4Div = letter_div.innerHTML;
-                        // var opt = {
-                        //   margin:       [0.50, m, 0, m],
-                        //   filename:     'Editletter.pdf',
-                        //   image:        { type: 'jpg', quality: 0.98 },
-                        //   html2canvas:  { scale: quality ,useCORS: true},
-                        //   jsPDF:        { unit: 'in', format: page_size, orientation: layout }
-                        // };
-                        
-                      //html2pdf().set(opt).from(a4Div).save();
+ document.getElementById("download_PDF").addEventListener("click",()=>{
+html2canvas($('#content-container')[0], {
+                    onrendered: function (canvas) {
+                        var data = canvas.toDataURL();
+                        var docDefinition = {
+                            content: [{
+                                image: data,
+                                width: 500
+                            }]
+                        };
+                        pdfMake.createPdf(docDefinition).download("Table.pdf");
+                    }
+                });
 
-                     var opt = {
-                          margin: [.75,0,.75,0],
-                          filename: 'Click_Start_' + Math.floor(Date.now() / 10000) + '.pdf',
-                          enableLinks: true,
-                          image: {
-                              type: 'jpeg',
-                              quality: 1
-                          },
-                          html2canvas: {
-                              scale: 2,
-                              dpi: 300,
-                              letterRendering: true
-                          },
-                          jsPDF: {
-                              unit: 'in',
-                              format: 'letter',
-                              orientation: 'portrait'
-                          },
-                          pagebreak:{
-                              mode: ['avoid-all', 'css', 'legacy'],
-                              avoid: 'div.recgrid-item'
-                          }
-                      };
-
-                        var count = 10; 
-                        var downloadButton = document.getElementById("download_PDF");
-                        
-                       
-                        downloadButton.disabled = true;
-                        downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                        
-                        var countdownInterval = setInterval(function() {
-                          count--;
-                          downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                          
-                          if (count === 0) {
-                            clearInterval(countdownInterval);
-                            downloadButton.innerHTML = "Downloading....";
-                            downloadButton.disabled = false;
-                          }
-                        }, 1000);
-                        
-                        
-                        setTimeout(function() {
-//                           html2pdf().set(opt).from(a4Div).save();
-                             html2pdf().from(a4Div, 'string').set(opt).toPdf().get('pdf').then(function (pdfObject) {
-                                                            /* some image related encoding */
-                                                                var headerTitle = "Recommendations";
-                                                                var footerCR = "© 2020";
-
-                                                                // Header and Footer
-                                                                for (var i = 1; i < pdf_pages.length; i++) {
-                                                                    pdfObject.setPage(i);
-                                                                    pdfObject.setFontSize(14);
-                                                                    pdfObject.setTextColor('#0090DA');
-                                                                    pdfObject.addImage(headerData, 'PNG', 0, 0, 8.5, .5);
-                                                                    pdfObject.setFontSize(10);
-                                                                    pdfObject.setTextColor('#777777');
-                                                                    pdfObject.text(footerCR, 4, 10.5);
-                                                                    pdfObject.text(' ' + i, 7.375, 10.5);
-                                                                    pdfObject.addImage(logoData, 'PNG', .75, 10.25, 1, .325);
-                                                                }
-
-                                                            }).save();
-                        }, 10000); 
-       })
+});
 
 
 
