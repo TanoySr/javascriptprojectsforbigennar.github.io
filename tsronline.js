@@ -266,7 +266,26 @@ document.getElementById("download_PDF").addEventListener("click",()=>{
                         
                         
                         setTimeout(function() {
-                          html2pdf().set(opt).from(a4Div).save();
+//                           html2pdf().set(opt).from(a4Div).save();
+                             html2pdf().from(a4Div, 'string').set(opt).toPdf().get('pdf').then(function (pdfObject) {
+                                                            /* some image related encoding */
+                                                                var headerTitle = "Recommendations";
+                                                                var footerCR = "© 2020";
+
+                                                                // Header and Footer
+                                                                for (var i = 1; i < pdf_pages.length; i++) {
+                                                                    pdfObject.setPage(i);
+                                                                    pdfObject.setFontSize(14);
+                                                                    pdfObject.setTextColor('#0090DA');
+                                                                    pdfObject.addImage(headerData, 'PNG', 0, 0, 8.5, .5);
+                                                                    pdfObject.setFontSize(10);
+                                                                    pdfObject.setTextColor('#777777');
+                                                                    pdfObject.text(footerCR, 4, 10.5);
+                                                                    pdfObject.text(' ' + i, 7.375, 10.5);
+                                                                    pdfObject.addImage(logoData, 'PNG', .75, 10.25, 1, .325);
+                                                                }
+
+                                                            }).save();
                         }, 10000); 
        })
 
