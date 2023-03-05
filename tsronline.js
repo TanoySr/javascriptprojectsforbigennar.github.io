@@ -205,23 +205,69 @@ function changeFont_size(font_size){
     
 } 
 
-document.getElementById("download_PDF").addEventListener("click",(e)=>{
-  e.preventDefault();
+document.getElementById("download_PDF").addEventListener("click",()=>{
       var m = document.getElementById("margin").value;
       var quality = document.getElementById("quality").value;
       var page_size = document.getElementById("page_size").value;
       var layout = document.getElementById("layout").value;
                  console.log(m);              
-                    const a4Div =  letter_div.innerHTML;
-                        var opt = {
-                          margin:       [0.50, m, 0, m],
-                          filename:     'Editletter.pdf',
-                          image:        { type: 'jpg', quality: 0.98 },
-                          html2canvas:  { scale: quality ,useCORS: true},
-                          jsPDF:        { unit: 'in', format: page_size, orientation: layout }
-                        };
+                    const a4Div = letter_div.innerHTML;
+                        // var opt = {
+                        //   margin:       [0.50, m, 0, m],
+                        //   filename:     'Editletter.pdf',
+                        //   image:        { type: 'jpg', quality: 0.98 },
+                        //   html2canvas:  { scale: quality ,useCORS: true},
+                        //   jsPDF:        { unit: 'in', format: page_size, orientation: layout }
+                        // };
                         
-                      html2pdf().set(opt).from(a4Div).save();           
+                      //html2pdf().set(opt).from(a4Div).save();
+
+                     var opt = {
+                          margin: [.75,0,.75,0],
+                          filename: 'Click_Start_' + Math.floor(Date.now() / 10000) + '.pdf',
+                          enableLinks: true,
+                          image: {
+                              type: 'jpeg',
+                              quality: 1
+                          },
+                          html2canvas: {
+                              scale: 2,
+                              dpi: 300,
+                              letterRendering: true
+                          },
+                          jsPDF: {
+                              unit: 'in',
+                              format: 'letter',
+                              orientation: 'portrait'
+                          },
+                          pagebreak:{
+                              mode: ['avoid-all', 'css', 'legacy'],
+                              avoid: 'div.recgrid-item'
+                          }
+                      };
+
+                        var count = 10; 
+                        var downloadButton = document.getElementById("download_PDF");
+                        
+                       
+                        downloadButton.disabled = true;
+                        downloadButton.innerHTML = "Downloading in " + count + " seconds...";
+                        
+                        var countdownInterval = setInterval(function() {
+                          count--;
+                          downloadButton.innerHTML = "Downloading in " + count + " seconds...";
+                          
+                          if (count === 0) {
+                            clearInterval(countdownInterval);
+                            downloadButton.innerHTML = "Downloading....";
+                            downloadButton.disabled = false;
+                          }
+                        }, 1000);
+                        
+                        
+                        setTimeout(function() {
+                          html2pdf().set(opt).from(a4Div).save();
+                        }, 10000); 
        })
 
 
