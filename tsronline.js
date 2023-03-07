@@ -166,11 +166,11 @@ document.getElementById("download_PDF").addEventListener("click",()=>{
                  console.log(m);              
                     const a4Div = letter_div.innerHTML;
                         var opt = {
-                          margin:       [0.50, m, 0, m],
+                          margin:       0,
                           filename:     'Editletter.pdf',
                           image:        { type: 'jpg', quality: 0.98 },
                           html2canvas:  { scale: quality ,useCORS: true,letterRendering: true},
-                          jsPDF:        { unit: 'mm', format: page_size, orientation: layout },
+                          jsPDF:        { unit: 'in', format: page_size, orientation: layout },
                           pagebreak:{
                               mode: ['avoid-all', 'css', 'legacy'],
                               avoid: 'div.recgrid-item'
