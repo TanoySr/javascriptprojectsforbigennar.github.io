@@ -166,7 +166,7 @@ document.getElementById("download_PDF").addEventListener("click",()=>{
                  console.log(m);              
                     const a4Div = letter_div.innerHTML;
                         var opt = {
-                          margin:       [0, 0, 0,0],
+                          margin:       [0.50, 0, 0, 0],
                           filename:     'Editletter.pdf',
                           image:        { type: 'jpg', quality: 0.98 },
                           html2canvas:  { scale: quality ,useCORS: true,letterRendering: true},
@@ -256,7 +256,3 @@ w_share.addEventListener('click', w_share_b);
 f_share.addEventListener('click', f_share_b);  
 tg_share.addEventListener('click', tg_share_b);
 t_share.addEventListener('click', t_share_b);
-
-
-
-
