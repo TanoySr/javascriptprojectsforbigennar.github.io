@@ -170,7 +170,7 @@ document.getElementById("download_PDF").addEventListener("click",()=>{
                           filename:     'Editletter.pdf',
                           image:        { type: 'jpg', quality: 0.98 },
                           html2canvas:  { scale: quality ,useCORS: true,letterRendering: true},
-                          jsPDF:        { unit: 'in', format: page_size, orientation: layout },
+                          jsPDF:        { unit: 'mm', format: page_size, orientation: layout },
                           pagebreak:{
                               mode: ['avoid-all', 'css', 'legacy'],
                               avoid: 'div.recgrid-item'
