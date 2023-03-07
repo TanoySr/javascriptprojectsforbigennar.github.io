@@ -159,39 +159,54 @@ function changeFont_size(font_size){
     }       
 } 
 document.getElementById("download_PDF").addEventListener("click",()=>{
-      var m = document.getElementById("margin").value;
-      var quality = document.getElementById("quality").value;
-      var page_size = document.getElementById("page_size").value;
-      var layout = document.getElementById("layout").value;
-                 console.log(m);              
-                    const a4Div = letter_div.innerHTML;
-                        var opt = {
-                          margin:       [0.50, 0, 0, 0],
-                          filename:     'Editletter.pdf',
-                          image:        { type: 'jpg', quality: 0.98 },
-                          html2canvas:  { scale: quality ,useCORS: true,letterRendering: true},
-                          jsPDF:        { unit: 'in', format: page_size, orientation: layout },
-                          pagebreak:{
-                              mode: ['avoid-all', 'css', 'legacy'],
-                              avoid: 'div.recgrid-item'
-                          }
-                        };
-                        var count = 10; 
-                        var downloadButton = document.getElementById("download_PDF");
-                        downloadButton.disabled = true;
-                        downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                        var countdownInterval = setInterval(function() {
-                          count--;
-                          downloadButton.innerHTML = "Downloading in " + count + " seconds...";
-                          if (count === 0) {
-                            clearInterval(countdownInterval);
-                            downloadButton.innerHTML = "Downloading....";
-                            downloadButton.disabled = false;
-                          }
-                        }, 1000);
-                        setTimeout(function() {
-                          html2pdf().set(opt).from(a4Div).save();
-                        }, 10000); 
+
+
+
+  html2pdf(letter_div,{
+    margin:10,
+    filename:'output.pdf',
+    image:{type:'jpeg',quality:0.98},
+    html2canvas:{scale:2,logging:true,dpi:192,letterRendering:true},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+})
+
+
+
+
+      // var m = document.getElementById("margin").value;
+      // var quality = document.getElementById("quality").value;
+      // var page_size = document.getElementById("page_size").value;
+      // var layout = document.getElementById("layout").value;
+      //            console.log(m);
+      //               const a4Div = letter_div.innerHTML;
+      //                   var opt = {
+      //                     margin:       [0.50, m, 0, m],
+      //                     filename:     'Editletter.pdf',
+      //                     image:        { type: 'jpg', quality: 0.98 },
+      //                     html2canvas:  { scale: quality ,useCORS: true,letterRendering: true},
+      //                     jsPDF:        { unit: 'in', format: page_size, orientation: layout },
+      //                     pagebreak:{
+      //                         mode: ['avoid-all', 'css', 'legacy'],
+      //                         avoid: 'div.recgrid-item'
+      //                     }
+      //                   };
+      //                   var count = 10; 
+      //                   var downloadButton = document.getElementById("download_PDF");
+      //                   downloadButton.disabled = true;
+      //                   downloadButton.innerHTML = "Downloading in " + count + " seconds...";
+      //                   var countdownInterval = setInterval(function() {
+      //                     count--;
+      //                     downloadButton.innerHTML = "Downloading in " + count + " seconds...";
+      //                     if (count === 0) {
+      //                       clearInterval(countdownInterval);
+      //                       downloadButton.innerHTML = "Downloading....";
+      //                       downloadButton.disabled = false;
+      //                     }
+      //                   }, 1000);
+      //                   setTimeout(function() {
+      //                     html2pdf().set(opt).from(a4Div).save();
+      //                     letter_div.style.height = "";
+      //                   }, 10000); 
        })
 function generatePDF() {
             document.getElementById("popup-container").style.display = "block";
